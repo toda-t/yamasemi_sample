@@ -32,22 +32,22 @@ $ catkin_make
 ```
 （端末3）$ roslaunch yamasemi_sample sample.launch
 ```
-beegoが1m進み、180度旋回して戻ってくるはずです。
+ロボットが1m進み、180度旋回して戻ってくるはずです。
 
 
 # 新しく作成したノードをコンパイルする方法
 
 src内にsample2.cppを作成した場合、CMakeLists.txtを変更しないとコンパイルできません。
-CMakeLists.txt内で以下の2文を追加します。
+
+コンパイルするため、CMakeLists.txt内で以下の2文を追加します。
 
 - add_executable(sample2 src/sample2.cpp)
+
 src内のsample2.cppをコンパイルしてsample2というノードを作成します。
 
 - target_link_libraries(sample2 ${catkin_LIBRARIES})
+
 sample2というノードにリンクするライブラリを指定します。
 
-# その他
 
-まれに，`$ roslaunch yamasemi_sim final_20XX_reset.launch`を実行するとGazebo自体がフリーズします（原因は調査中）。
-その場合再開することはできないので，全ての端末をCtrl-cで落とした後，立ち上げ直して下さい。
 
