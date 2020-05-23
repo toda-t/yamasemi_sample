@@ -32,11 +32,11 @@ int main(int argc,char **argv){
     ros::NodeHandle nh;
     ros::Subscriber odom_sub = nh.subscribe("odom", 10, odomCallback);  //robotのオドメトリを読み込むsubscriberの宣言。ros::spinOnce()の度にodomCallback()が呼び出される。
     // ros::Subscriber scan_sub = nh.subscribe("scan", 10, scanCallback);   //URGの計測データを読み込むsubscriberの宣言。ros::spinOnce()の度scanCallback()が呼び出される。
-	ros::Publisher cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 10);  //robotにモータに指令値を送るpublisherの宣言。
-	ros::Rate loop_rate(50);
+    ros::Publisher cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 10);  //robotにモータに指令値を送るpublisherの宣言。
+    ros::Rate loop_rate(50);
     geometry_msgs::Twist cmd_vel_;
 
-	sleep(1);
+    sleep(1);
     ros::spinOnce();
     const nav_msgs::Odometry init_pos = pos;
     std::vector<double> init_rpy(3);
@@ -52,8 +52,8 @@ int main(int argc,char **argv){
     cmd_vel_.angular.z = 0.0;   //yaw
     while(pos.pose.pose.position.x - init_pos.pose.pose.position.x <= 1.0 - 0.005){
         cmd_vel_pub.publish(cmd_vel_);  //cmd_velのpublish
-		ros::spinOnce();
-		loop_rate.sleep();  
+        ros::spinOnce();
+        loop_rate.sleep();  
     }
 
     std::cout << "spin" << std::endl;
@@ -75,8 +75,8 @@ int main(int argc,char **argv){
     cmd_vel_.angular.z = 0.0;
     while(pos.pose.pose.position.x - init_pos.pose.pose.position.x >= 0.005){
         cmd_vel_pub.publish(cmd_vel_);
-		ros::spinOnce();
-		loop_rate.sleep();  
+        ros::spinOnce();
+        loop_rate.sleep();  
     }
 
     std::cout << "goal" << std::endl;
