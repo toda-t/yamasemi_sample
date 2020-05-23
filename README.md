@@ -49,5 +49,8 @@ src内のsample2.cppをコンパイルしてsample2というノードを作成�
 
 sample2というノードにリンクするライブラリを指定します。
 
+# その他
 
+中間課題からURGを使いますが、URGを使うためにはsample.cpp内の以下のコメントアウトを外します。
 
+ros::Subscriber scan_sub = nh.subscribe("scan", 10, scanCallback);
