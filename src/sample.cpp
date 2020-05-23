@@ -44,7 +44,7 @@ int main(int argc,char **argv){
     tf::Matrix3x3(init_quat).getRPY(init_rpy[0], init_rpy[1], init_rpy[2]); //クォータニオンからオイラー角への変換
 
     std::cout << "straight" << std::endl;
-    cmd_vel_.linear.x = 0.6;
+    cmd_vel_.linear.x = 0.3;
     cmd_vel_.linear.y = 0.0;
     cmd_vel_.linear.z = 0.0;
     cmd_vel_.angular.x = 0.0;   //roll
@@ -71,7 +71,7 @@ int main(int argc,char **argv){
     }
 
     std::cout << "straight" << std::endl;
-    cmd_vel_.linear.x = 0.6;
+    cmd_vel_.linear.x = 0.3;
     cmd_vel_.angular.z = 0.0;
     while(pos.pose.pose.position.x - init_pos.pose.pose.position.x >= 0.005){
         cmd_vel_pub.publish(cmd_vel_);
@@ -80,7 +80,9 @@ int main(int argc,char **argv){
     }
 
     std::cout << "goal" << std::endl;
-    cmd_vel_.angular.z = 0.0;
+    cmd_vel_.linear.x = 0.0;
     cmd_vel_pub.publish(cmd_vel_);
+
+    return 0;
 
 }
